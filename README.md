@@ -24,6 +24,21 @@ The Zebra Printing extension will listen to those messages and print the `zpl` t
 - zpl: The ZPL string to be printed
 - url: The URL of the printer
 
+The extension will also post a message to the web page upon loading. This way in your web app you can check if the extension is installed:
+
+    window.addEventListener("message", function (event) {
+        if (!event.data.ZebraPrintingVersion) {
+            return;
+        }
+        // extension installed, enable print button or whatever...
+        console.log(event.data);
+    });
+
+The event will contain two fields:
+
+- ZebraPrintingExtensionId: The extension ID (ndikjdigobmbieacjcgomahigeiobhbo)
+- ZebraPrintingVersion: The version number of the installed extension
+
 ## Tested Printers
 
 - ZT220 with firmware V72.19.15Z

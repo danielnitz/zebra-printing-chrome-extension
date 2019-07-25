@@ -1,11 +1,11 @@
 console.log('content.js loaded');
 
-window.addEventListener("message", function (event) {
-    // We only accept messages from ourselves
-    if (event.source != window) {
-        return;
-    }
+window.postMessage({
+    ZebraPrintingExtensionId: chrome.runtime.id,
+    ZebraPrintingVersion: chrome.runtime.getManifest().version
+}, "*");
 
+window.addEventListener("message", function (event) {
     if (typeof event.data.type === 'undefined') {
         return;
     }
