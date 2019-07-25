@@ -6,6 +6,8 @@ Unfortunately those printers [don't set any CORS headers](https://developer.zebr
 
 This extension circumvents this issue.
 
+[![Available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo)
+
 ## Usage
 
 Install this extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo) in your browser (it's free).
