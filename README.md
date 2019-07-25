@@ -8,7 +8,7 @@ This extension circumvents this issue.
 
 ## Usage
 
-Install this extension in your browser.
+Install this extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo) in your browser (it's free).
 
 In your web app you can now directly print to Zebra printers by using [`window.postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage):
 
