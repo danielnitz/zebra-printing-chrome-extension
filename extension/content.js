@@ -1,4 +1,4 @@
-console.log('content.js loaded');
+// console.log('content.js loaded');
 
 window.postMessage({
     ZebraPrintingExtensionId: chrome.runtime.id,
@@ -14,9 +14,9 @@ window.addEventListener("message", function (event) {
         return;
     }
 
-    console.log('Forwarding message to background.js');
+    // console.log('Forwarding message to background.js');
 
     chrome.runtime.sendMessage(event.data, function (response) {
-        console.log(response);
+        // console.log(response);
     });
 }, false);

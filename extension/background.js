@@ -1,7 +1,7 @@
-console.log('background.js loaded');
+// console.log('background.js loaded');
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    console.log(message);
+    // console.log(message);
 
     var request = new XMLHttpRequest();
 
