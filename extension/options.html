@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8">
+    <title>Zebra Printing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="mdl/material.min.js"></script>
+    <link href="options.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="mdl-layout mdl-js-layout">
+
+        <div class="ribbon"></div>
+
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+
+                <div class="content mdl-cell mdl-cell--8-col mdl-color--white mdl-shadow--4dp">
+
+                    <h3>Zebra Printing</h3>
+
+                    <form action="#">
+
+                        <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--12-col">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" id="printerAddress">
+                                    <label class="mdl-textfield__label" for="printerAddress">Printer Address</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mdl-grid">
+                            <div class="mdl-cell  mdl-cell--12-col">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <textarea class="mdl-textfield__input" type="text" rows="3" id="zpl"></textarea>
+                                    <label class="mdl-textfield__label" for="zpl">ZPL here...</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mdl-grid">
+                            <div class="mdl-cell">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="print">
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div class="mdl-grid">
+
+                        <div class="mdl-cell mdl-cell--12-col">
+                            ^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+            </div>
+
+            <footer class="demo-footer mdl-mini-footer">
+                <div class="mdl-mini-footer--left-section">
+                    <ul class="mdl-mini-footer--link-list">
+                        <li><a href="https://github.com/danielnitz/zebra-printing-chrome-extension">Github</a></li>
+                        <li><a href="https://chrome.google.com/webstore/detail/zebra-printing/ndikjdigobmbieacjcgomahigeiobhbo">Chrome Web Store</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+
+    <script src="options.js"></script>
+
+</body>
+
+</html>

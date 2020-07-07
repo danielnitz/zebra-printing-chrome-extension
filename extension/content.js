@@ -1,10 +1,12 @@
-// console.log('content.js loaded');
+console.log('content.js loaded');
 
+// Notify current website about the existence of this chrome extension
 window.postMessage({
     ZebraPrintingExtensionId: chrome.runtime.id,
     ZebraPrintingVersion: chrome.runtime.getManifest().version
 }, "*");
 
+// Listen to messages from the current website
 window.addEventListener("message", function (event) {
     if (typeof event.data.type === 'undefined') {
         return;
@@ -14,9 +16,9 @@ window.addEventListener("message", function (event) {
         return;
     }
 
-    // console.log('Forwarding message to background.js');
+    console.log('Forwarding message to background.js');
 
     chrome.runtime.sendMessage(event.data, function (response) {
-        // console.log(response);
+        console.log(response);
     });
 }, false);

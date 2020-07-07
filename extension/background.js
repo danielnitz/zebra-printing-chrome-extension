@@ -1,7 +1,7 @@
-// console.log('background.js loaded');
+console.log('background.js loaded');
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    // console.log(message);
+    console.log(message);
 
     var request = new XMLHttpRequest();
 
@@ -13,4 +13,10 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     request.send(message.zpl);
 
     return true;
+});
+
+chrome.browserAction.onClicked.addListener(function (tab) {
+    chrome.tabs.create({
+        'url': chrome.extension.getURL('options.html')
+    });
 });

@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Zebra Printing",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Allows to print ZPL to a network connected Zebra printer.",
     "icons": {
         "128": "zebra128.png"
@@ -28,5 +28,6 @@
         ],
         "persistent": false
     },
+    "browser_action": {},
     "offline_enabled": true
 }
