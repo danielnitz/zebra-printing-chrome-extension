@@ -44,6 +44,7 @@ The event will contain two fields:
 ## Tested Printers
 
 - ZT220 with firmware V72.19.15Z
+- ZT220 with firmware V72.20.01Z
 
 Feel free to open a pull request to add other supported printers!
 
