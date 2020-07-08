@@ -57,6 +57,12 @@ For local development/testing:
     python simple-https-server.py
     open https://localhost:4443/
 
+## Release
+
+Just zip up the `extension` directory:
+
+    zip -FSr extension.zip extension
+
 ## Known Limitations
 
 [Zebra printers will always return a `200 OK` status code](https://developer.zebra.com/community/home/blog/2015/12/02/http-post) whether they were able to print or not.
