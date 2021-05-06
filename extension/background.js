@@ -2,15 +2,21 @@ console.log('background.js loaded');
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log(message);
+    const controller = new AbortController();
+    const {signal} = controller;
 
-    var request = new XMLHttpRequest();
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'text/plain'},
+        body: message.zpl,
+        signal,
+    };
 
-    request.onload = function () {
-        sendResponse({ status: request.status });
-    }
+    fetch(message.url, requestOptions);
 
-    request.open('POST', message.url, true);
-    request.send(message.zpl);
+    setTimeout(() => {
+        controller.abort();
+    }, 750);
 
     return true;
 });
