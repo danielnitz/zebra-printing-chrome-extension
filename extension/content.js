@@ -20,6 +20,10 @@ window.addEventListener('message', function(event) {
     console.log('Forwarding message to background.js');
 
     chrome.runtime.sendMessage(event.data, function(response) {
-        console.log(response);
+        window.postMessage({ type: "FROM_CONTENT", text: "Something message here", response}, "*")
     });
 }, false);
+
+chrome.runtime.onMessage.addListener(function (response, sendResponse) {
+    window.postMessage(response, "*")
+});

@@ -23,7 +23,12 @@ chrome.runtime.onMessage.addListener(
                 controller.abort();
             }, 750);
 
-            return true;
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, {action: 'zpl', status: 'printed', data: 'none'},
+                    function(response) {});
+            });
+
+            return {status: '200', text: 'excellent'};
         }
 
         if (message.nfc) {
@@ -54,6 +59,11 @@ chrome.runtime.onMessage.addListener(
                     66)}`;
                 console.info(`NFC Payload processed, received: ${url}`);
                 window.postMessage({type: 'nfc', data: url}, '*');
+
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, {action: 'nfc', status: 'read', data: url},
+                        function(response) {});
+                });
 
                 return url;
             }
