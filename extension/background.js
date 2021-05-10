@@ -61,7 +61,7 @@ chrome.runtime.onMessage.addListener(
                 window.postMessage({type: 'nfc', data: url}, '*');
 
                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, {action: 'nfc', status: 'read', data: url},
+                    chrome.tabs.sendMessage(tabs[0].id, {action: 'nfc', status: 'read', data: {url, key: payload.slice(52, 66)}},
                         function(response) {});
                 });
 
