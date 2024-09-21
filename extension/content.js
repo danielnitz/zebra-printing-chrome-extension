@@ -1,4 +1,4 @@
-console.log('content.js loaded');
+console.log('Zebra Printing: content.js loaded');
 
 // Notify current website about the existence of this chrome extension
 window.postMessage({
@@ -15,6 +15,6 @@ window.addEventListener('message', function (event) {
     console.log('Forwarding message to background.js');
 
     chrome.runtime.sendMessage(event.data, function (response) {
-        console.log(response); // {status: 200}
+        console.log(response);
     });
 });

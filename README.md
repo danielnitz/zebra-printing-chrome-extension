@@ -47,8 +47,7 @@ The event will contain two fields:
 
 ## Tested Printers
 
-- ZT220 with firmware V72.19.15Z
-- ZT220 with firmware V72.20.01Z
+- ZT220 with firmware V72.19.15Z, V72.20.01Z
 - ZD620 with firmware V84.20.10Z, V84.20.18Z, V84.20.21Z
 - ZD621 with firmware V93.21.07Z
 - GK420d with firmware V61.17.17Z
