@@ -6,7 +6,7 @@ Unfortunately those printers [don't set any CORS headers](https://developer.zebr
 
 This extension circumvents this issue.
 
-[![Available in the Chrome Web Store](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo)
+[![Available in the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo)
 
 ## Usage
 
@@ -14,11 +14,13 @@ Install this extension from the [Chrome Web Store](https://chrome.google.com/web
 
 In your web app you can now directly print to Zebra printers by using [`window.postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage):
 
-    window.postMessage({
-        type: "zebra_print_label",
-        zpl: "^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
-        url: "http://192.168.37.36/pstprnt"
-    }, "*");
+```javascript
+window.postMessage({
+    type: "zebra_print_label",
+    zpl: "^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
+    url: "http://192.168.37.36/pstprnt"
+}, "*");
+```
 
 The Zebra Printing extension will listen to those messages and print the `zpl` to the `url`.
 
@@ -28,13 +30,15 @@ The Zebra Printing extension will listen to those messages and print the `zpl` t
 
 The extension will also post a message to the web page upon loading. This way in your web app you can check if the extension is installed:
 
-    window.addEventListener("message", function (event) {
-        if (!event.data.ZebraPrintingVersion) {
-            return;
-        }
-        // extension installed, enable print button or whatever...
-        console.log(event.data);
-    });
+```javascript
+window.addEventListener("message", function (event) {
+    if (!event.data.ZebraPrintingVersion) {
+        return;
+    }
+    // extension installed, enable print button or whatever...
+    console.log(event.data);
+});
+```
 
 The event will contain two fields:
 
@@ -45,6 +49,9 @@ The event will contain two fields:
 
 - ZT220 with firmware V72.19.15Z
 - ZT220 with firmware V72.20.01Z
+- ZD620 with firmware V84.20.10Z, V84.20.18Z, V84.20.21Z
+- ZD621 with firmware V93.21.07Z
+- GK420d with firmware V61.17.17Z
 
 Feel free to open a pull request to add other supported printers!
 
@@ -52,16 +59,20 @@ Feel free to open a pull request to add other supported printers!
 
 For local development/testing:
 
-    cd testing/
-    openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
-    python simple-https-server.py
-    open https://localhost:4443/
+```shell
+cd testing/
+openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
+python simple-https-server.py
+open https://localhost:4443/
+```
 
 ## Release
 
 Just zip up the `extension` directory:
 
-    zip -FSr extension.zip extension
+```shell
+zip -FSr extension.zip extension
+```
 
 ## Known Limitations
 

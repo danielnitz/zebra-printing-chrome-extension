@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <div class="mdl-layout mdl-js-layout">
 
         <div class="ribbon"></div>
@@ -37,9 +36,9 @@
 
                         <div class="mdl-grid">
                             <div class="mdl-cell  mdl-cell--12-col">
-                                <div class="mdl-textfield mdl-js-textfield">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <textarea class="mdl-textfield__input" type="text" rows="3" id="zpl"></textarea>
-                                    <label class="mdl-textfield__label" for="zpl">ZPL here...</label>
+                                    <label class="mdl-textfield__label" for="zpl">ZPL Code</label>
                                 </div>
                             </div>
                         </div>
@@ -55,11 +54,10 @@
                     </form>
 
                     <div class="mdl-grid">
-
                         <div class="mdl-cell mdl-cell--12-col">
                             <h6>Simple ZPL Test Print</h6>
                             <p>Just copy & paste this:</p>
-                            <p>^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ</p>
+                            <code>^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ</code>
                         </div>
                     </div>
 

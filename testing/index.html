@@ -6,23 +6,24 @@
 </body>
 
 <script>
-    (function () {
-        window.addEventListener("message", function (event) {
-            if (!event.data.ZebraPrintingVersion) {
-                return;
-            }
-            console.log(event.data);
-        });
+(function () {
+    window.addEventListener('message', function (event) {
+        if (!event.data.ZebraPrintingVersion) {
+            return;
+        }
+        console.log(event.data); // {ZebraPrintingExtensionId: 'ikcjnjdjpfkhhoionghihboodimhipla', ZebraPrintingVersion: '1.2'}
+    });
 
-        document.getElementById("btn").addEventListener("click", function () {
-            console.log('Sending print message from the web page...');
-            window.postMessage({
-                type: "zebra_print_label",
-                zpl: "^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
-                url: "http://192.168.38.10/pstprnt"
-            }, "*");
-        }, false);
-    })();
+    document.getElementById('btn').addEventListener('click', function () {
+        console.log('Sending print message from the web page...');
+
+        window.postMessage({
+            type: 'zebra_print_label',
+            zpl: '^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ',
+            url: 'http://localhost:8080/pstprnt'
+        }, '*');
+    }, false);
+})();
 </script>
 
 </html>

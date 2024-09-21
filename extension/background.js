@@ -3,20 +3,29 @@ console.log('background.js loaded');
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log(message);
 
-    var request = new XMLHttpRequest();
-
-    request.onload = function () {
-        sendResponse({ status: request.status });
-    }
-
-    request.open('POST', message.url, true);
-    request.send(message.zpl);
+    fetch(message.url, {
+        method: 'POST',
+        body: message.zpl
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.status
+    })
+    .then(data => {
+        sendResponse({ status: 200 });
+    })
+    .catch(error => {
+        console.error('Error in sending request:', error);
+        sendResponse({ status: 500 });
+    });
 
     return true;
 });
 
-chrome.browserAction.onClicked.addListener(function (tab) {
+chrome.action.onClicked.addListener(function (tab) {
     chrome.tabs.create({
-        'url': chrome.extension.getURL('options.html')
+        'url': chrome.runtime.getURL('options.html')
     });
 });
