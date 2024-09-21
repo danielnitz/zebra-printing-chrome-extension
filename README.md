@@ -1,5 +1,7 @@
 # Zebra Printing Extension for Google Chrome
 
+**Chrome Manifest V3 update coming soon! Currently testing.**
+
 Most Zebra Printers have a [HTTP POST endpoint](https://developer.zebra.com/community/home/blog/2015/03/31/printing-from-websites-part-2) through which ZPL can be directly printed without the need for an installed driver, print dialogs popping up or other locally installed software.
 
 Unfortunately those printers [don't set any CORS headers](https://developer.zebra.com/community/home/blog/2015/08/13/http-post-printing-and-cors) which makes it impossible to use this HTTP endpoint in modern browser-based apps.
