@@ -1,88 +1,43 @@
-var address = document.getElementById('printerAddress');
-var zpl = document.getElementById('zpl');
-var print = document.getElementById('print');
+var printer = document.getElementById('printerAddress'),
+    zpl = document.getElementById('zpl'),
+    printButton = document.getElementById('print'),
+    printConfigButton = document.getElementById('print_config'),
+    detectLabelButton = document.getElementById('detect_label');
 
-var lastZpl = getCookie('zebra_printing_last_zpl');
+cookiePersistence(printer);
+cookiePersistence(zpl);
 
-if (lastZpl) {
-    zpl.value = lastZpl;
-}
-
-zpl.onblur = function () {
-    setCookie('zebra_printing_last_zpl', zpl.value, 365);
-}
-
-var lastAddress = getCookie('zebra_printing_last_printer_address');
-
-if (lastAddress) {
-    address.value = lastAddress;
-    checkAddress(address.value);
-}
-
-function checkAddress(address) {
-    console.log(address);
-    setCookie('zebra_printing_last_printer_address', address, 365);
-
-    fetch('http://' + address, {
-        method: 'GET'
-    })
-        .then(response => {
-            if (!response.ok) {
-                console.log('network error');
-                throw new Error('Network response was not ok');
-            }
-            return response.status
-        })
-        .then(data => {
-            console.log('all good');
-            //sendResponse({ status: 200 });
-        })
-        .catch(error => {
-            console.log('error sending request');
-            console.error('Error in sending request:', error);
-            //sendResponse({ status: 500 });
-        });
-}
-
-address.onblur = function () {
-    checkAddress(address.value);
-}
-
-print.onclick = function () {
-    console.log('Print button clicked.');
-    chrome.runtime.sendMessage({
-        type: 'zebra_print_label',
-        zpl: document.getElementById('zpl').value,
-        url: 'http://' + address.value + '/pstprnt'
-    });
-    return false;
-}
-
-var printConfig = document.getElementById('print_config');
-
-printConfig.addEventListener("click", (event) => {
-    console.log('Print config button clicked.');
-    chrome.runtime.sendMessage({
-        type: 'zebra_print_label',
-        zpl: '~WC',
-        url: 'http://' + address.value + '/pstprnt'
-    });
+printButton.addEventListener('click', (event) => {
+    sendMessageToPrinter(
+        'zebra_print_label',
+        zpl.value,
+        printer.value
+    );
 });
 
-var detectLabel = document.getElementById('detect_label');
-
-detectLabel.addEventListener("click", (event) => {
-    console.log('Detect label button clicked.');
-    const sending = chrome.runtime.sendMessage({
-        type: 'zebra_print_label',
-        zpl: '~JL',
-        url: 'http://' + address.value + '/pstprnt'
-    });
-    sending.then(function (message) {
-        console.log("detect done");
-        console.log(message);
-    });
+printConfigButton.addEventListener('click', (event) => {
+    sendMessageToPrinter(
+        'zebra_print_label',
+        '~WC',
+        printer.value
+    );
 });
+
+detectLabelButton.addEventListener('click', (event) => {
+    sendMessageToPrinter(
+        'zebra_print_label',
+        '~JL',
+        printer.value
+    );
+});
+
+function sendMessageToPrinter(type, zpl, address) {
+    chrome.runtime.sendMessage({
+        type: type,
+        zpl: zpl,
+        url: 'http://' + address + '/pstprnt'
+    });
+}
 
 function setCookie(name, value, days) {
     var expires = "";
@@ -103,4 +58,14 @@ function getCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
+}
+
+function cookiePersistence(el) {
+    var last = getCookie(el.id);
+    if (last) {
+        el.value = last;
+    }
+    el.onblur = function () {
+        setCookie(el.id, el.value, 365);
+    }
 }

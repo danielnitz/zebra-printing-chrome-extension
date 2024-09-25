@@ -3,34 +3,14 @@ function handleMessage(message, sender, sendResponse) {
     if (message.type == 'zebra_print_label') {
         printLabel(message, sendResponse);
     }
-
-    if (message.type == 'zebra_print_check_printer') {
-        checkPrinter(message, sendResponse);
-    }
 }
 
-function checkPrinter(message, sendResponse) {
-    return "printer checked";
-}
-
-function printLabel(message, sendResponse) {
-    fetch(message.url, {
+async function printLabel(message) {
+    const response = await fetch(message.url, {
         method: 'POST',
         body: message.zpl
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
-            return response.status;
-        })
-        .then(data => {
-            sendResponse({ status: 200 });
-        })
-        .catch(error => {
-            console.error('Error in sending request:', error);
-            sendResponse({ status: 500 });
-        });
+    });
+    await response.text();
 }
 
 chrome.action.onClicked.addListener(function (tab) {
