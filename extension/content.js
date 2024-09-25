@@ -6,8 +6,11 @@ window.postMessage({
 
 // Listen to messages from the current website
 window.addEventListener('message', function (event) {
-    var prefix = 'zebra_print_';
-    if (event.data.type.substring(1, prefix.length) != prefix) {
+    if (typeof event.data.type === 'undefined') {
+        return;
+    }
+
+    if (event.data.type != 'zebra_print_label') {
         return;
     }
 

@@ -1,11 +1,11 @@
 <html>
 
 <body>
-    <h1>Zebra Printing Extension Test Page</h1>
+    <h1>Zebra Printing Web App Example</h1>
+    <input type="text" id="address" />
+    <label for="address">Printer IP</label>
     <button id="btn">Print</button>
 </body>
-
-</html>
 
 <script>
     (function () {
@@ -22,8 +22,10 @@
             window.postMessage({
                 type: 'zebra_print_label',
                 zpl: '^XA^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ',
-                url: 'http://localhost:8080/pstprnt'
+                url: 'http://' + document.getElementById('address').value + '/pstprnt'
             }, '*');
         }, false);
     })();
 </script>
+
+</html>
