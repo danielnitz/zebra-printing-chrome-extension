@@ -1,7 +1,5 @@
 # Zebra Printing Extension for Google Chrome
 
-**Chrome Manifest V3 update coming soon! Currently testing.**
-
 Most Zebra Printers have a [HTTP POST endpoint](https://developer.zebra.com/community/home/blog/2015/03/31/printing-from-websites-part-2) through which ZPL can be directly printed without the need for an installed driver, print dialogs popping up or other locally installed software.
 
 Unfortunately those printers [don't set any CORS headers](https://developer.zebra.com/community/home/blog/2015/08/13/http-post-printing-and-cors) which makes it impossible to use this HTTP endpoint in modern browser-based apps.
@@ -19,7 +17,7 @@ In your web app you can now directly print to Zebra printers by using [`window.p
 ```javascript
 window.postMessage({
     type: "zebra_print_label",
-    zpl: "^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
+    zpl: "^XA^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
     url: "http://192.168.37.36/pstprnt"
 }, "*");
 ```
@@ -28,7 +26,7 @@ The Zebra Printing extension will listen to those messages and print the `zpl` t
 
 - type: The extension will only pick up messages where the type is `zebra_print_label`
 - zpl: The ZPL string to be printed
-- url: The URL of the printer
+- url: The URL of the printer (local IP or dns name)
 
 The extension will also post a message to the web page upon loading. This way in your web app you can check if the extension is installed:
 
@@ -53,6 +51,7 @@ The event will contain two fields:
 - ZD620 with firmware V84.20.10Z, V84.20.18Z, V84.20.21Z
 - ZD621 with firmware V93.21.07Z
 - GK420d with firmware V61.17.17Z
+- ZD230 with firmware V89.21.26Z
 
 Feel free to open a pull request to add other supported printers!
 
