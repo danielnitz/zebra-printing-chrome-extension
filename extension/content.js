@@ -1,5 +1,3 @@
-console.log('Zebra Printing: content.js loaded');
-
 // Notify current website about the existence of this chrome extension
 window.postMessage({
     ZebraPrintingExtensionId: chrome.runtime.id,
@@ -8,13 +6,10 @@ window.postMessage({
 
 // Listen to messages from the current website
 window.addEventListener('message', function (event) {
-    if (event.data.type != 'zebra_print_label') {
+    var prefix = 'zebra_print_';
+    if (event.data.type.substring(1, prefix.length) != prefix) {
         return;
     }
 
-    console.log('Forwarding message to background.js');
-
-    chrome.runtime.sendMessage(event.data, function (response) {
-        console.log(response);
-    });
+    chrome.runtime.sendMessage(event.data);
 });

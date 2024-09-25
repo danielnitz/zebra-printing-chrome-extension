@@ -21,6 +21,7 @@
 
                 <div class="content mdl-cell mdl-cell--8-col mdl-color--white mdl-shadow--4dp">
 
+                    <div class="logo"></div>
                     <h3>Zebra Printing</h3>
 
                     <form action="#">
@@ -29,7 +30,7 @@
                             <div class="mdl-cell mdl-cell--12-col">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" id="printerAddress">
-                                    <label class="mdl-textfield__label" for="printerAddress">Printer Address</label>
+                                    <label class="mdl-textfield__label" for="printerAddress">Printer IP Address</label>
                                 </div>
                             </div>
                         </div>
@@ -49,6 +50,17 @@
                                     Print
                                 </button>
                             </div>
+
+                            <div class="mdl-cell mdl-typography--text-right">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="print_config">
+                                    Print Config
+                                </button>
+                            </div>
+                            <div class="mdl-cell mdl-typography--text-right">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="detect_label">
+                                    Detect Label Length
+                                </button>
+                            </div>
                         </div>
 
                     </form>
@@ -57,13 +69,14 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <h6>Simple ZPL Test Print</h6>
                             <p>Just copy & paste this:</p>
-                            <code>^XA^PW400^LL200^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ</code>
+                            <p>
+                                <code>^XA^FO0,0^ADN,36,^FDZebra Printing Test Print^FS^XZ</code>
+                            </p>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
             </div>
 
             <footer class="demo-footer mdl-mini-footer">

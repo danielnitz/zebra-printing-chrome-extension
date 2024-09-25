@@ -16,10 +16,19 @@ main {
 
 .content {
     border-radius: 2px;
-    padding: 80px 56px;
+    padding: 40px 56px;
     margin-bottom: 80px;
 }
 
 .mdl-textfield {
-    width : 100%;
+    width: 100%;
+}
+
+.logo {
+    background: url('zebra128.png') no-repeat;
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    margin: 24px;
+    float: left;
 }
