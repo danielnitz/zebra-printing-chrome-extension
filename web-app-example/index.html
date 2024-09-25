@@ -2,9 +2,18 @@
 
 <body>
     <h1>Zebra Printing Web App Example</h1>
-    <input type="text" id="address" />
-    <label for="address">Printer IP</label>
-    <button id="btn">Print</button>
+    <p id="installed" style="display:none">Zebra Printing Extension is installed (version <span id="version"></span>)</p>
+    <p>
+        <label for="address">Printer IP</label>
+        <input type="text" id="address" />
+    </p>
+    <p>
+        <label for="zpl">ZPL</label>
+        <input type="text" id="zpl" value="^XA^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ" />
+    </p>
+    <p>
+        <button id="btn" disabled>Print</button>
+    </p>
 </body>
 
 <script>
@@ -13,7 +22,10 @@
             if (!event.data.ZebraPrintingVersion) {
                 return;
             }
-            console.log(event.data);
+
+            document.getElementById('btn').disabled = false;
+            document.getElementById('installed').style.display = 'block';
+            document.getElementById('version').textContent = event.data.ZebraPrintingVersion;
         });
 
         document.getElementById('btn').addEventListener('click', function () {
@@ -21,7 +33,7 @@
 
             window.postMessage({
                 type: 'zebra_print_label',
-                zpl: '^XA^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ',
+                zpl: document.getElementById('zpl').value,
                 url: 'http://' + document.getElementById('address').value + '/pstprnt'
             }, '*');
         }, false);
