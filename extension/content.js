@@ -17,4 +17,11 @@ window.addEventListener('message', function (event) {
     }
 
     browser.runtime.sendMessage(event.data);
+
+    if (event.source) {
+        event.source.postMessage({
+            msg: 'Zebra extension received message',
+            id: (event.data.id ? event.data.id : '')
+        }, '*');
+    }
 });

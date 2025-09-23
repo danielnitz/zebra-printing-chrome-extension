@@ -19,7 +19,8 @@ In your web app you can now directly print to Zebra printers by using [`window.p
 window.postMessage({
     type: "zebra_print_label",
     zpl: "^XA^FO20,20^A0N,30,30^FDThis is a TEST^FS^XZ",
-    url: "http://192.168.37.36/pstprnt"
+    url: "http://192.168.37.36/pstprnt",
+    id: "my random string"
 }, "*");
 ```
 
@@ -28,6 +29,7 @@ The Zebra Printing extension will listen to those messages and print the `zpl` t
 - type: The extension will only pick up messages where the type is `zebra_print_label`
 - zpl: The ZPL string to be printed
 - url: The URL of the printer (local IP or dns name)
+- id (optional): A random string that will be posted back to the window posting the ZPL message in order to acknowledge its receival
 
 The extension will also post a message to the web page upon loading. This way in your web app you can check if the extension is installed:
 

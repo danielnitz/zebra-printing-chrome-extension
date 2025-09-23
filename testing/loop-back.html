@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<body>
+    <h1>Zebra Printing Extension Test Page</h1>
+    <button id="btn">Print</button>
+    <p>This is a demo page showing how you can check that the <code>postMessage()</code> was received by the extension. If successful the extension will return a message on the event bus with your submitted <code>id</code>.</p>
+</body>
+
+</html>
+
+<script>
+    (function () {
+        window.addEventListener('message', function (event) {
+            if (event.data.id == 'foobarbaz') {
+                console.log(event.data);
+            }
+            if (event.data.ZebraPrintingVersion) {
+                console.log(event.data);
+            }
+        });
+
+        document.getElementById('btn').addEventListener('click', function () {
+            console.log('Sending print message from the web page...');
+
+            window.postMessage({
+                type: 'zebra_print_label',
+                zpl: '', // intentionally empty
+                url: 'http://localhost:8080/pstprnt',
+                id: 'foobarbaz'
+            }, '*');
+        }, false);
+    })();
+</script>
