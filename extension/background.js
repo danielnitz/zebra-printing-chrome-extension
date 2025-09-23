@@ -1,4 +1,3 @@
-
 function handleMessage(message, sender, sendResponse) {
     if (message.type == 'zebra_print_label') {
         printLabel(message, sendResponse);

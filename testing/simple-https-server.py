@@ -7,9 +7,19 @@
 # then in your browser, visit:
 #    https://localhost:4443
 
-import BaseHTTPServer, SimpleHTTPServer
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 import ssl
+from pathlib import Path
 
-httpd = BaseHTTPServer.HTTPServer(('localhost', 4443), SimpleHTTPServer.SimpleHTTPRequestHandler)
-httpd.socket = ssl.wrap_socket (httpd.socket, certfile='./server.pem', server_side=True)
+port = 4443
+
+httpd = HTTPServer(("localhost", port), SimpleHTTPRequestHandler)
+ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+ssl_context.load_cert_chain(Path(__file__).parent / "server.pem")
+httpd.socket = ssl_context.wrap_socket(
+    httpd.socket,
+    server_side=True,
+)
+
+print(f"Serving on https://localhost:{port}")
 httpd.serve_forever()

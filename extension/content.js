@@ -1,7 +1,9 @@
-// Notify current website about the existence of this chrome extension
+const browser = window.browser || window.chrome;
+
+// Notify current website about the existence of this extension
 window.postMessage({
-    ZebraPrintingExtensionId: chrome.runtime.id,
-    ZebraPrintingVersion: chrome.runtime.getManifest().version
+    ZebraPrintingExtensionId: browser.runtime.id,
+    ZebraPrintingVersion: browser.runtime.getManifest().version
 }, '*');
 
 // Listen to messages from the current website
@@ -14,5 +16,5 @@ window.addEventListener('message', function (event) {
         return;
     }
 
-    chrome.runtime.sendMessage(event.data);
+    browser.runtime.sendMessage(event.data);
 });

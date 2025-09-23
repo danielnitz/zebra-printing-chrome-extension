@@ -1,2 +1,4 @@
 extension.zip
 testing/server.pem
+extension/web-ext-artifacts/*
+ShipperLabel.gif

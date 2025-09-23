@@ -6,11 +6,12 @@ Unfortunately those printers [don't set any CORS headers](https://developer.zebr
 
 This extension circumvents this issue.
 
-[![Available in the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo)
+[![Available in the Chrome Web Store](chrome-web-store.png)](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo)
+[![Available in Firefox Addon Store](firefox-addon.png)](https://addons.mozilla.org/de/firefox/addon/zebra-printing/)
 
 ## Usage
 
-Install this extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo) in your browser (it's free).
+Install this extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/ndikjdigobmbieacjcgomahigeiobhbo) or [Firefox Addon](https://addons.mozilla.org/de/firefox/addon/zebra-printing/) in your browser (it's free).
 
 In your web app you can now directly print to Zebra printers by using [`window.postMessage()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage):
 
@@ -62,7 +63,7 @@ For local development/testing:
 ```shell
 cd testing/
 openssl req -new -x509 -keyout server.pem -out server.pem -days 365 -nodes
-python simple-https-server.py
+python3 simple-https-server.py
 open https://localhost:4443/
 ```
 

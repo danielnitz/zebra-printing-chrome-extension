@@ -1,14 +1,21 @@
 {
   "manifest_version": 3,
   "name": "Zebra Printing",
-  "version": "1.6",
+  "version": "1.8",
   "description": "Allows to print ZPL to a network connected Zebra printer.",
   "icons": {
     "128": "zebra128.png"
   },
   "author": "Daniel Nitz",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{885527f4-6ae3-4b5e-94d5-a11cbd83c6ad}",
+      "strict_min_version": "135.0"
+    }
+  },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"
@@ -24,7 +31,13 @@
     }
   ],
   "background": {
+    "scripts": [
+      "background.js"
+    ],
     "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self';"
   },
   "action": {},
   "offline_enabled": true
